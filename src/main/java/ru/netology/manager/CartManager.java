@@ -9,11 +9,7 @@ public class CartManager {
         // создаём новый массив размером на единицу больше
         int length = items.length + 1;
         PurchaseItem[] tmp = new PurchaseItem[length];
-        // itar + tab
-        // копируем поэлементно
-        // for (int i = 0; i < items.length; i++) {
-        //   tmp[i] = items[i];
-        // }
+
         System.arraycopy(items, 0, tmp, 0, items.length);
         // кладём последним наш элемент
         int lastIndex = tmp.length - 1;
@@ -21,29 +17,25 @@ public class CartManager {
         items = tmp;
     }
 
-    public PurchaseItem[] getAll() {
-        PurchaseItem[] result = new PurchaseItem[items.length];
-        // перебираем массив в прямом порядке
-        // но кладём в результаты в обратном
-        for (int i = 0; i < result.length; i++) {
-            int index = items.length - i - 1;
-            result[i] = items[index];
-        }
+    public PurchaseItem[] return10(int quantity) {
+
+        PurchaseItem[] result = new PurchaseItem[quantity];
+        int x = items.length - quantity;
+        System.arraycopy(items, x, result, 0, quantity);
+        items = result;
         return result;
     }
 
-    // наивная реализация
-    public void removeById(int id) {
-        int length = items.length - 1;
-        PurchaseItem[] tmp = new PurchaseItem[length];
-        int index = 0;
-        for (PurchaseItem item : items) {
-            if (item.getId() != id) {
-                tmp[index] = item;
-                index++;
-            }
+    public PurchaseItem[] getAll() {
+        PurchaseItem[] result2 = new PurchaseItem[items.length];
+        // перебираем массив в прямом порядке
+        // но кладём в результаты в обратном
+        for (int i = 0; i < result2.length; i++) {
+            int index = items.length - i - 1;
+            result2[i] = items[index];
         }
-        // меняем наши элементы
-        items = tmp;
+        return result2;
     }
+
+
 }

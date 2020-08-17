@@ -30,6 +30,9 @@ public class AfishaManager {
         }
         if (last > items.length) {
             last = items.length;
+            int x = items.length - last;
+            System.arraycopy(items, x, result, 0, last);
+            return items;
         }
         int x = items.length - last;
         System.arraycopy(items, x, result, 0, last);
